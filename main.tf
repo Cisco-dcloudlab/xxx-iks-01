@@ -6,7 +6,7 @@ provider "intersight" {
 
 module "terraform-intersight-iks" {
   source = "terraform-cisco-modules/iks/intersight"
-  version = "1.0.2"
+  version = "1.0.1"
 
 
   # Infra Config Policy Information
