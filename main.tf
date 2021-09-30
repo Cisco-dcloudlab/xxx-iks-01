@@ -46,7 +46,7 @@ module "terraform-intersight-iks" {
   }
 
 
-  # IP Pool Information
+  # IP Pool information
   ip_pool = {
     use_existing        = true
     name                = "iks-01-ippool"
@@ -58,7 +58,7 @@ module "terraform-intersight-iks" {
   }
 
 
-  # Network Configuration Settings
+  # System Configuration Settings
   sysconfig = {
     use_existing  = true
     name          = "iks-01-sysconfig"
@@ -68,7 +68,7 @@ module "terraform-intersight-iks" {
     dns_servers   = ["198.19.254.82"]
   }
 
-  # K8s networking configuration
+  # K8s internal networking configuration
   k8s_network = {
     use_existing = true
     name         = "iks-01-k8s-network"
@@ -77,15 +77,30 @@ module "terraform-intersight-iks" {
     cni          = "Calico"
   }
 
-  runtime_policy = {}
-  tr_policy = {}
-  version_policy = {}
+
+  runtime_policy = {
+    use_existing         = false
+    create_new           = false
+  }
+
+
+  tr_policy = {
+    use_existing         = false
+    create_new           = false
+  }
+
+
+  version_policy = {
+    use_existing = true
+    name         = "1.19.5"
+    version      = "1.19.5"
+  }
 
   # Organization
   organization        = var.organization
 
 
-
+  # Addons configuration
   addons_list = [{
     addon_policy_name = "dashboard"
     addon             = "kubernetes-dashboard"
