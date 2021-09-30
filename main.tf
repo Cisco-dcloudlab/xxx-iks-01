@@ -12,7 +12,8 @@ module "terraform-intersight-iks" {
   cluster = {
     name                = var.cluster_name
     action              = "False"
-    wait_for_completion = true
+    action = "Deploy"
+    wait_for_completion = false
     worker_nodes        = 4
     load_balancers      = 3
     worker_max          = 20
