@@ -11,70 +11,70 @@ module "terraform-intersight-iks" {
 
   # Cluster information
   cluster = {
-      name                = var.cluster_name
-      action              = "False"
-      wait_for_completion = true
-      worker_nodes        = 4
-      load_balancers      = 3
-      worker_max          = 20
-      control_nodes       = 1
-      ssh_user            = "iksadmin"
-      ssh_public_key      = var.ssh_key
+    name                = var.cluster_name
+    action              = "False"
+    wait_for_completion = true
+    worker_nodes        = 4
+    load_balancers      = 3
+    worker_max          = 20
+    control_nodes       = 1
+    ssh_user            = "iksadmin"
+    ssh_public_key      = var.ssh_key
   }
 
 
   # vCenter information
   infra_config_policy = {
-      use_existing     = true
-      name             = "iks-01-infra"
-      vc_target_name   = var.vc_target_name
-      vc_portgroups    = [var.vc_portgroup]
-      vc_datastore     = var.datastore
-      vc_cluster       = var.vc_cluster
-      vc_resource_pool = ""
-      vc_password      = var.vc_password
+    use_existing     = true
+    name             = "iks-01-infra"
+    vc_target_name   = var.vc_target_name
+    vc_portgroups    = [var.vc_portgroup]
+    vc_datastore     = var.datastore
+    vc_cluster       = var.vc_cluster
+    vc_resource_pool = ""
+    vc_password      = var.vc_password
   }
 
 
   # Instance configuration
   instance_type = {
-      use_existing = true
-      name         = "small"
-      cpu          = 4
-      memory       = 16386
-      disk_size    = 40
+    use_existing = true
+    name         = "iks-01-small"
+    cpu          = 4
+    memory       = 16384
+    disk_size    = 40
   }
 
 
   # IP Pool Information
   ip_pool = {
-      use_existing        = true
-      name                = "iks-01-ippool"
-      ip_starting_address = var.ip_starting_address
-      ip_pool_size        = var.ip_pool_size
-      ip_netmask          = "255.255.255.0"
-      ip_gateway          = var.ip_gateway
-      dns_servers         = ["198.19.254.82"]
+    use_existing        = true
+    name                = "iks-01-ippool"
+    ip_starting_address = var.ip_starting_address
+    ip_pool_size        = var.ip_pool_size
+    ip_netmask          = "255.255.255.0"
+    ip_gateway          = var.ip_gateway
+    dns_servers         = ["198.19.254.82"]
   }
 
 
   # Network Configuration Settings
   sysconfig = {
-      use_existing  = true
-      name          = "iks-01-sysconfig"
-      domain_name   = "dcv.svpod"
-      timezone      = "Etc/GMT"
-      ntp_servers   = ["198.19.255.137"]
-      dns_servers   = ["198.19.254.82"]
+    use_existing  = true
+    name          = "iks-01-sysconfig"
+    domain_name   = "dcv.svpod"
+    timezone      = "Etc/GMT"
+    ntp_servers   = ["198.19.255.137"]
+    dns_servers   = ["198.19.254.82"]
   }
 
   # K8s networking configuration
   k8s_network = {
-      use_existing = true
-      name         = "iks-01-k8s-network"
-      pod_cidr     = "100.64.8.0/22"
-      service_cidr = "100.64.12.0/22"
-      cni          = "Calico"
+    use_existing = true
+    name         = "iks-01-k8s-network"
+    pod_cidr     = "100.64.8.0/22"
+    service_cidr = "100.64.12.0/22"
+    cni          = "Calico"
   }
 
   runtime_policy = {}
