@@ -8,7 +8,6 @@ module "terraform-intersight-iks" {
   source = "terraform-cisco-modules/iks/intersight"
   version = "2.0.3"
 
-
   # Cluster information
   cluster = {
     name                = var.cluster_name
@@ -22,10 +21,10 @@ module "terraform-intersight-iks" {
     ssh_public_key      = var.ssh_key
   }
 
-
   # vCenter information
   infra_config_policy = {
     use_existing     = true
+    create_new       = true
     name             = "iks-01-infra"
     vc_target_name   = var.vc_target_name
     vc_portgroups    = [var.vc_portgroup]
@@ -35,20 +34,20 @@ module "terraform-intersight-iks" {
     vc_password      = var.vc_password
   }
 
-
   # Instance configuration
   instance_type = {
     use_existing = true
+    create_new   = true
     name         = "iks-01-small"
     cpu          = 4
     memory       = 16384
     disk_size    = 40
   }
 
-
   # IP Pool information
   ip_pool = {
     use_existing        = true
+    create_new          = true
     name                = "iks-01-ippool"
     ip_starting_address = var.ip_starting_address
     ip_pool_size        = var.ip_pool_size
@@ -57,10 +56,10 @@ module "terraform-intersight-iks" {
     dns_servers         = ["198.19.254.82"]
   }
 
-
   # System Configuration Settings
   sysconfig = {
     use_existing  = true
+    create_new    = true
     name          = "iks-01-sysconfig"
     domain_name   = "dcv.svpod"
     timezone      = "Etc/GMT"
@@ -71,24 +70,22 @@ module "terraform-intersight-iks" {
   # K8s internal networking configuration
   k8s_network = {
     use_existing = true
+    create_new   = true
     name         = "iks-01-k8s-network"
     pod_cidr     = "100.64.8.0/22"
     service_cidr = "100.64.12.0/22"
     cni          = "Calico"
   }
 
-
   runtime_policy = {
     use_existing         = false
     create_new           = false
   }
 
-
   tr_policy = {
     use_existing         = false
     create_new           = false
   }
-
 
   version_policy = {
     use_existing = true
@@ -98,7 +95,6 @@ module "terraform-intersight-iks" {
 
   # Organization
   organization        = var.organization
-
 
   # Addons configuration
   addons_list = [{
