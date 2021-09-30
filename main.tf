@@ -23,6 +23,7 @@ module "terraform-intersight-iks" {
 
   # vCenter information
   infra_config_policy = {
+    use_existing     = false
     name             = "iks-01-infra"
     vc_target_name   = var.vc_target_name
     vc_portgroups    = [var.vc_portgroup]
@@ -34,6 +35,7 @@ module "terraform-intersight-iks" {
 
   # Instance configuration
   instance_type = {
+    use_existing = false
     name         = "iks-01-small"
     cpu          = 4
     memory       = 16384
@@ -42,6 +44,7 @@ module "terraform-intersight-iks" {
 
   # IP Pool information
   ip_pool = {
+    use_existing        = false
     name                = "iks-01-ippool"
     ip_starting_address = var.ip_starting_address
     ip_pool_size        = var.ip_pool_size
@@ -52,6 +55,7 @@ module "terraform-intersight-iks" {
 
   # System Configuration Settings
   sysconfig = {
+    use_existing  = false
     name          = "iks-01-sysconfig"
     domain_name   = "dcv.svpod"
     timezone      = "Etc/GMT"
@@ -61,6 +65,7 @@ module "terraform-intersight-iks" {
 
   # K8s internal networking configuration
   k8s_network = {
+    use_existing = false
     name         = "iks-01-k8s-network"
     pod_cidr     = "100.64.8.0/22"
     service_cidr = "100.64.12.0/22"
@@ -78,6 +83,7 @@ module "terraform-intersight-iks" {
   }
 
   version_policy = {
+    use_existing = false
     name         = "1.19.5"
     version      = "1.19.5"
   }
