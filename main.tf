@@ -68,8 +68,8 @@ module "terraform-intersight-iks" {
   k8s_network = {
     use_existing = false
     name         = "iks-01-k8s-network"
-    pod_cidr     = "100.64.8.0/22"
-    service_cidr = "100.64.12.0/22"
+    pod_cidr     = "172.30.0.0/16"
+    service_cidr = "172.31.0.0/16"
     cni          = "Calico"
   }
 
