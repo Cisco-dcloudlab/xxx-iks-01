@@ -6,7 +6,7 @@ provider "intersight" {
 
 module "terraform-intersight-iks" {
   source = "terraform-cisco-modules/iks/intersight"
-  version = "2.0.3"
+  version = "2.1.0"
 
   # Cluster information
   cluster = {
