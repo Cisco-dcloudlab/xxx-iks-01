@@ -23,15 +23,15 @@ module "terraform-intersight-iks" {
   }
 
   # vCenter information
-  infra_config_policy = {
-    use_existing     = false
-    name             = "iks-01-infra"
-    vc_target_name   = var.vc_target_name
-    vc_portgroups    = [var.vc_portgroup]
-    vc_datastore     = var.datastore
-    vc_cluster       = var.vc_cluster
-    vc_resource_pool = ""
-    vc_password      = var.vc_password
+  infraConfigPolicy = {
+    use_existing        = true
+    policyName          = "iks-01-infra"
+    vcTargetName        = var.vc_target_name
+    interfaces          = [var.vc_portgroup]
+    vcDatastoreName     = var.datastore
+    vcClusterName       = var.vc_cluster
+    vcResourcePoolName  = ""
+    vcPassword          = var.vc_password
   }
 
   # Instance configuration
@@ -93,19 +93,19 @@ module "terraform-intersight-iks" {
   organization        = var.organization
 
   # Addons configuration
-  addons_list = [{
-    addon_policy_name = "dashboard"
-    addon             = "kubernetes-dashboard"
+  addons = [{
+    addonPolicyName   = "dashboard"
+    addonName         = "kubernetes-dashboard"
     description       = "K8s Dashboard Policy"
-    upgrade_strategy  = "AlwaysReinstall"
-    install_strategy  = "InstallOnly"
+    upgradeStrategy   = "AlwaysReinstall"
+    installStrategy   = "InstallOnly"
     },
     {
-      addon_policy_name = "monitor"
-      addon             = "ccp-monitor"
+      addonPolicyName   = "monitor"
+      addonName         = "ccp-monitor"
       description       = "Grafana Policy"
-      upgrade_strategy  = "AlwaysReinstall"
-      install_strategy  = "InstallOnly"
+      upgradeStrategy   = "AlwaysReinstall"
+      installStrategy   = "InstallOnly"
     }
   ]
 }
