@@ -93,14 +93,17 @@ module "terraform-intersight-iks" {
   organization        = var.organization
 
   # Addons configuration
-  addons = [{
-    addonPolicyName   = "dashboard"
-    addonName         = "kubernetes-dashboard"
-    description       = "K8s Dashboard Policy"
-    upgradeStrategy   = "AlwaysReinstall"
-    installStrategy   = "InstallOnly"
+  addons = [
+    {
+      createNew = false
+      addonPolicyName   = "dashboard"
+      addonName         = "kubernetes-dashboard"
+      description       = "K8s Dashboard Policy"
+      upgradeStrategy   = "AlwaysReinstall"
+      installStrategy   = "InstallOnly"
     },
     {
+      createNew = false
       addonPolicyName   = "monitor"
       addonName         = "ccp-monitor"
       description       = "Grafana Policy"
